@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: face_liveness_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: face_liveness
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pready"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: face_liveness_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:root@db:3306/face_liveness
+      - JWT_SECRET=some_random_secret_key_that_is_at_least_32_characters_long
+      - VITE_APP_TITLE=FaceLiveness AI
+      - VITE_APP_LOGO=https://example.com/logo.png
+      - VITE_ANALYTICS_ENDPOINT=https://analytics.example.com
+      - VITE_ANALYTICS_WEBSITE_ID=dummy-id
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+
+volumes:
+  mysql_data:
+  uploads_data:

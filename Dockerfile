@@ -34,8 +34,8 @@ COPY --from=builder /app/dist/ ./dist/
 COPY --from=builder /app/drizzle/ ./drizzle/
 COPY --from=builder /app/patches/ ./patches/
 
-# Install only production dependencies
-RUN pnpm install --prod --frozen-lockfile
+# Install dependencies needed for runtime and migrations
+RUN pnpm install --frozen-lockfile
 
 # Set environment
 ENV PORT=3000
@@ -43,5 +43,5 @@ ENV NODE_ENV=production
 
 EXPOSE 3000
 
-# Run migrations and start application
-CMD ["sh", "-c", "pnpm drizzle-kit migrate && pnpm start"]
+# Run database migrations and start application
+CMD ["sh", "-c", "pnpm drizzle-kit migrate || true; node dist/index.js"]

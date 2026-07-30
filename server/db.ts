@@ -26,6 +26,22 @@ async function ensureTables(db: ReturnType<typeof drizzle>) {
         lastSignedIn TIMESTAMP
       );
     `);
+
+    const alterQueries = [
+      `ALTER TABLE users ADD COLUMN passwordHash VARCHAR(255)`,
+      `ALTER TABLE users ADD COLUMN dateOfBirth VARCHAR(10)`,
+      `ALTER TABLE users ADD COLUMN department VARCHAR(255)`,
+      `ALTER TABLE users ADD COLUMN faceImageUrl TEXT`
+    ];
+
+    for (const q of alterQueries) {
+      try {
+        await db.execute(sql.raw(q));
+      } catch (e) {
+        // Ignore column duplicate errors
+      }
+    }
+
     await db.execute(sql`
       CREATE TABLE IF NOT EXISTS faceImages (
         id INT AUTO_INCREMENT PRIMARY KEY,

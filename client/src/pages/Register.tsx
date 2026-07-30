@@ -68,7 +68,7 @@ export default function Register() {
 
       // Create a temporary canvas for capture
       const tempCanvas = document.createElement('canvas');
-      const ctx = tempCanvas.getContext('2d');
+      const ctx = tempCanvas.getContext('2d', { willReadFrequently: true });
 
       if (!ctx) {
         toast.error("Failed to get canvas context");
@@ -139,7 +139,7 @@ export default function Register() {
       
       try {
         const tempCanvas = document.createElement('canvas');
-        const ctx = tempCanvas.getContext('2d');
+        const ctx = tempCanvas.getContext('2d', { willReadFrequently: true });
         if (ctx) {
           const img = new Image();
           await new Promise<void>((resolve) => {

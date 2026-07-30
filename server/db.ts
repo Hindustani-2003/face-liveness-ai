@@ -1,9 +1,46 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, faceImages } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
+let _tablesEnsured = false;
+
+async function ensureTables(db: ReturnType<typeof drizzle>) {
+  if (_tablesEnsured) return;
+  try {
+    await db.execute(sql`
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        openId VARCHAR(64) UNIQUE,
+        name VARCHAR(255),
+        email VARCHAR(320) UNIQUE,
+        passwordHash VARCHAR(255),
+        dateOfBirth VARCHAR(10),
+        department VARCHAR(255),
+        faceImageUrl TEXT,
+        loginMethod VARCHAR(64),
+        role ENUM('user', 'admin') DEFAULT 'user' NOT NULL,
+        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+        lastSignedIn TIMESTAMP
+      );
+    `);
+    await db.execute(sql`
+      CREATE TABLE IF NOT EXISTS faceImages (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        userId INT NOT NULL,
+        imageUrl TEXT NOT NULL,
+        embedding TEXT,
+        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+      );
+    `);
+    _tablesEnsured = true;
+  } catch (error) {
+    console.warn("[Database] Table auto-creation check warning:", error);
+  }
+}
 
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
@@ -14,6 +51,9 @@ export async function getDb() {
       console.warn("[Database] Failed to connect:", error);
       _db = null;
     }
+  }
+  if (_db && !_tablesEnsured) {
+    await ensureTables(_db);
   }
   return _db;
 }

@@ -25,7 +25,7 @@
 \usepackage{enumitem}
 \usepackage{tocloft}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows, positioning, fit, calc, backgrounds}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, calc, backgrounds, shadows}
 
 % --- Color Definitions ---
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -34,12 +34,6 @@
 \definecolor{backcolour}{rgb}{0.96,0.96,0.96}
 \definecolor{primaryblue}{rgb}{0.01,0.45,0.73}
 \definecolor{gsvblue}{rgb}{0.0,0.25,0.5}
-
-% --- TikZ Flowchart Styles ---
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!15]
-\tikzstyle{process} = [rectangle, minimum width=3.2cm, minimum height=1cm, text centered, draw=black, fill=blue!10]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!15]
-\tikzstyle{arrow} = [thick,->,>=stealth]
 
 % --- Listing Style ---
 \lstdefinestyle{mystyle}{
@@ -259,23 +253,28 @@ This project was carried out as part of the summer internship requirements at \t
 \label{sec:methodology}
 
 \subsection{System Architecture}
-The system consists of a decoupled client-server architecture. Figure~\ref{fig:architecture} demonstrates the operational flow between the browser client, API middleware, and cloud database.
+The system consists of a decoupled client-server architecture. Figure~\ref{fig:architecture} demonstrates the aligned operational flow between the browser client, API middleware, and cloud database layers.
 
 \begin{figure}[h!]
 \centering
-\begin{tikzpicture}[node distance=1.8cm, auto]
+\begin{tikzpicture}[node distance=1.2cm and 1.8cm, auto,
+    box/.style={rectangle, draw=gsvblue!80, fill=blue!5, thick, rounded corners=4pt, minimum width=3.4cm, minimum height=1.4cm, align=center, font=\small},
+    serverbox/.style={rectangle, draw=green!60!black, fill=green!5, thick, rounded corners=4pt, minimum width=3.4cm, minimum height=1.4cm, align=center, font=\small},
+    dbbox/.style={rectangle, draw=orange!80!black, fill=orange!5, thick, rounded corners=4pt, minimum width=3.4cm, minimum height=1.4cm, align=center, font=\small},
+    line/.style={draw=black!70, -{Stealth[length=3mm]}, thick}
+]
     % Nodes
-    \node (client) [process, fill=blue!15] {\textbf{React 19 Client} \\ (face-api.js / WebGL)};
-    \node (trpc) [process, right=1.5cm of client, fill=green!15] {\textbf{tRPC Middleware} \\ (Express / Zod)};
-    \node (db) [process, right=1.5cm of trpc, fill=orange!15] {\textbf{Aiven MySQL 8.0} \\ (Drizzle ORM)};
-    
-    % Connections
-    \draw[arrow] (client) -- node[above] {\small Biometric Descriptor} node[below] {\small (JSON Payload)} (trpc);
-    \draw[arrow] (trpc) -- node[above] {\small SQL Query} node[below] {\small (TLS 1.3)} (db);
-    \draw[arrow] (db) edge[bend left=30] node[below] {\small Matched Record} (trpc);
-    \draw[arrow] (trpc) edge[bend left=30] node[below] {\small Session Cookie / Auth Result} (client);
+    \node (client) [box] {\textbf{Browser Client Layer}\\React 19 + Vite\\face-api.js (WebGL)};
+    \node (trpc) [serverbox, right=1.8cm of client] {\textbf{API Middleware Layer}\\tRPC Router + Zod\\Express (Node 20)};
+    \node (db) [dbbox, right=1.8cm of trpc] {\textbf{Cloud Storage Layer}\\Aiven MySQL 8.0\\Drizzle ORM (TLS 1.3)};
+
+    % Arrows with text
+    \draw [line] (client.east) -- node[above, font=\footnotesize] {128-D Vector} node[below, font=\tiny\color{black!60}] {(HTTPS/tRPC)} (trpc.west);
+    \draw [line] (trpc.east) -- node[above, font=\footnotesize] {SQL Query} node[below, font=\tiny\color{black!60}] {(Port 19633)} (db.west);
+    \draw [line] (db.south) -- ++(0,-0.6) -| node[pos=0.25, below, font=\tiny\color{black!60}] {Matched Profile} (trpc.south);
+    \draw [line] (trpc.south) -- ++(0,-0.6) -| node[pos=0.25, below, font=\tiny\color{black!60}] {Auth Token / Cookie} (client.south);
 \end{tikzpicture}
-\caption{End-to-End Component Architecture Diagram of FaceLiveness AI.}
+\caption{System Component Architecture and Data Flow Pipeline.}
 \label{fig:architecture}
 \end{figure}
 
@@ -289,27 +288,41 @@ The client loads four pre-trained deep convolutional neural networks via CDN:
     \item \textbf{FaceRecognitionNet:} Deep ResNet-34 based model mapping facial crops into a normalized 128-dimensional real-valued vector space ($\mathbb{R}^{128}$).
 \end{enumerate}
 
-Figure~\ref{fig:landmarks} illustrates the 68-point landmark geometry used for liveness extraction.
+Figure~\ref{fig:landmarks} presents the centered 68-point landmark geometry used for facial feature extraction.
 
 \begin{figure}[h!]
 \centering
-\begin{tikzpicture}[scale=0.8]
-    % Face Outline
-    \draw[thick, fill=blue!5] (0,0) ellipse (2.5cm and 3.2cm);
+\begin{tikzpicture}[scale=0.95, every node/.style={transform shape}]
+    % Face Silhouette
+    \draw[very thick, fill=blue!3, draw=primaryblue!80] (0,0) ellipse (2.6cm and 3.4cm);
     
-    % Eyes
-    \draw[fill=black] (-1,0.8) circle (0.15cm) node[above=0.2cm] {\tiny $P_{36}-P_{41}$};
-    \draw[fill=black] (1,0.8) circle (0.15cm) node[above=0.2cm] {\tiny $P_{42}-P_{47}$};
+    % Eyebrows
+    \draw[ultra thick, color=black!70] (-1.6,1.4) parabola bend (-1.1,1.6) (-0.5,1.3);
+    \draw[ultra thick, color=black!70] (0.5,1.3) parabola bend (1.1,1.6) (1.6,1.4);
     
-    % Nose
-    \draw[thick, fill=red!20] (0,0.2) -- (-0.3,-0.6) -- (0.3,-0.6) -- cycle;
-    \node at (0,-0.8) {\tiny Nose Tip $P_{27}$};
+    % Left Eye (Landmarks 36-41)
+    \draw[thick, fill=cyan!15, draw=primaryblue] (-1.2,0.8) ellipse (0.45cm and 0.25cm);
+    \fill[black] (-1.2,0.8) circle (0.1cm);
+    \node[above=0.3cm of {(-1.2,0.8)}, font=\tiny\bfseries, color=primaryblue] {Left Eye ($P_{36}-P_{41}$)};
     
-    % Mouth
-    \draw[thick, fill=red!30] (-0.8,-1.6) quadratic bend (0,-1.3) .. (0.8,-1.6) quadratic bend (0,-2.0) .. (-0.8,-1.6);
-    \node at (0,-2.3) {\tiny Lips $P_{48}-P_{67}$};
+    % Right Eye (Landmarks 42-47)
+    \draw[thick, fill=cyan!15, draw=primaryblue] (1.2,0.8) ellipse (0.45cm and 0.25cm);
+    \fill[black] (1.2,0.8) circle (0.1cm);
+    \node[above=0.3cm of {(1.2,0.8)}, font=\tiny\bfseries, color=primaryblue] {Right Eye ($P_{42}-P_{47}$)};
+    
+    % Nose Bridge & Tip (Landmarks 27-35)
+    \draw[thick, draw=red!70!black, fill=red!10] (0,1.0) -- (0,-0.3) -- (-0.35,-0.6) -- (0.35,-0.6) -- cycle;
+    \node[right=0.4cm of {(0,-0.4)}, font=\tiny\bfseries, color=red!70!black] {Nose Tip ($P_{27}$)};
+    
+    % Mouth Contour (Landmarks 48-67)
+    \draw[thick, draw=green!50!black, fill=green!15] (-0.9,-1.6) .. controls (-0.4,-1.3) and (0.4,-1.3) .. (0.9,-1.6) .. controls (0.4,-2.1) and (-0.4,-2.1) .. cycle;
+    \node[below=0.3cm of {(0,-1.8)}, font=\tiny\bfseries, color=green!50!black] {Lips \& Mouth ($P_{48}-P_{67}$)};
+    
+    % Jawline Contour (Landmarks 0-16)
+    \draw[dashed, thick, color=orange!80!black] (-2.4,1.0) .. controls (-2.5,-1.8) and (-1.2,-3.2) .. (0,-3.2) .. controls (1.2,-3.2) and (2.5,-1.8) .. (2.4,1.0);
+    \node[left=0.2cm of {(-2.2,-0.5)}, font=\tiny\bfseries, color=orange!80!black] {Jaw Contour ($P_{0}-P_{16}$)};
 \end{tikzpicture}
-\caption{68 Facial Landmark Points Mapping and Regional Geometry.}
+\caption{68 Facial Landmark Point Mapping and Regional Feature Boundaries.}
 \label{fig:landmarks}
 \end{figure}
 
@@ -334,33 +347,44 @@ A state-machine tracks frame-by-frame state transitions:
 \end{cases}
 \end{equation}
 
-Figure~\ref{fig:flowchart} shows the dual-stage liveness state machine flow.
+Figure~\ref{fig:flowchart} details the vertically aligned dual-stage liveness state machine.
 
 \begin{figure}[h!]
 \centering
-\begin{tikzpicture}[node distance=1.5cm]
-    \node (start) [startstop] {Start Camera Capture};
-    \node (detect) [process, below of=start] {Detect Face \& 68 Landmarks};
-    \node (blink) [decision, below of=detect, yshift=-0.5cm] {EAR Blink Detected?};
-    \node (challenge) [process, right of=blink, xshift=3cm] {Secondary Challenge (Head Turn/Mouth)};
-    \node (chalcheck) [decision, below of=challenge, yshift=-0.5cm] {Challenge Passed?};
-    \node (extract) [process, left of=chalcheck, xshift=-3cm] {Extract 128-D Embedding Vector};
-    \node (match) [decision, below of=extract, yshift=-0.5cm] {Euclidean Distance $< 0.60$?};
-    \node (success) [startstop, fill=green!25, right of=match, xshift=3cm] {AUTHENTICATED};
-    \node (fail) [startstop, fill=red!25, left of=match, xshift=-2.5cm] {REJECTED};
+\begin{tikzpicture}[node distance=1.3cm and 1.8cm, auto,
+    startnode/.style={rectangle, rounded corners=6pt, draw=red!70!black, fill=red!10, thick, minimum width=3.8cm, minimum height=1.0cm, align=center, font=\small\bfseries},
+    procnode/.style={rectangle, rounded corners=4pt, draw=primaryblue!80, fill=blue!8, thick, minimum width=4.0cm, minimum height=1.0cm, align=center, font=\small},
+    decnode/.style={diamond, draw=orange!80!black, fill=orange!12, thick, aspect=2, minimum width=3.6cm, minimum height=1.0cm, align=center, font=\small},
+    passnode/.style={rectangle, rounded corners=6pt, draw=green!60!black, fill=green!20, thick, minimum width=3.8cm, minimum height=1.0cm, align=center, font=\small\bfseries},
+    failnode/.style={rectangle, rounded corners=6pt, draw=red!80!black, fill=red!25, thick, minimum width=3.8cm, minimum height=1.0cm, align=center, font=\small\bfseries},
+    arr/.style={draw=black!75, -{Stealth[length=2.8mm]}, thick}
+]
+    % Nodes Sequence Vertical Column 1
+    \node (step1) [startnode] {1. Start Camera Viewport};
+    \node (step2) [procnode, below=0.8cm of step1] {2. Detect Face \& 68 Landmarks};
+    \node (step3) [decnode, below=0.8cm of step2] {Stage 1: EAR Blink\\Detected?};
+    \node (step4) [procnode, below=0.8cm of step3] {3. Trigger Secondary Challenge\\(Head Yaw / Mouth Open)};
+    \node (step5) [decnode, below=0.8cm of step4] {Stage 2: Challenge\\Passed?};
+    \node (step6) [procnode, below=0.8cm of step5] {4. Extract 128-D Vector \& Match\\($D(\mathbf{A},\mathbf{B}) < 0.60$)};
+    \node (step7) [decnode, below=0.8cm of step6] {Euclidean Match\\Confirmed?};
+    \node (pass) [passnode, below=0.9cm of step7] {AUTHENTICATION SUCCESS};
 
-    \draw[arrow] (start) -- (detect);
-    \draw[arrow] (detect) -- (blink);
-    \draw[arrow] (blink) -- node[above] {Yes} (challenge);
-    \draw[arrow] (blink) -- node[left] {No} (detect);
-    \draw[arrow] (challenge) -- (chalcheck);
-    \draw[arrow] (chalcheck) -- node[left] {Yes} (extract);
-    \draw[arrow] (chalcheck) edge[bend right=45] node[right] {No} (fail);
-    \draw[arrow] (extract) -- (match);
-    \draw[arrow] (match) -- node[above] {Yes} (success);
-    \draw[arrow] (match) -- node[above] {No} (fail);
+    % Right Column: Rejection Node
+    \node (fail) [failnode, right=2.8cm of step5] {AUTHENTICATION REJECTED\\(Spoof / Invalid User)};
+
+    % Arrows
+    \draw [arr] (step1) -- (step2);
+    \draw [arr] (step2) -- (step3);
+    \draw [arr] (step3) -- node[left, font=\bfseries\small\color{green!50!black}] {Yes} (step4);
+    \draw [arr] (step3.east) -- ++(1.4,0) |- node[near start, above, font=\tiny\color{red!70!black}] {No (Retry)} (step2.east);
+    \draw [arr] (step4) -- (step5);
+    \draw [arr] (step5) -- node[left, font=\bfseries\small\color{green!50!black}] {Yes} (step6);
+    \draw [arr] (step5.east) -- node[above, font=\bfseries\small\color{red!70!black}] {No} (fail.west);
+    \draw [arr] (step6) -- (step7);
+    \draw [arr] (step7) -- node[left, font=\bfseries\small\color{green!50!black}] {Yes} (pass);
+    \draw [arr] (step7.east) -- ++(1.4,0) |- node[near start, above, font=\bfseries\small\color{red!70!black}] {No} (fail.south);
 \end{tikzpicture}
-\caption{Dual-Stage Interactive Liveness Verification Flowchart.}
+\caption{Dual-Stage Interactive Liveness and Verification Decision Flowchart.}
 \label{fig:flowchart}
 \end{figure}
 

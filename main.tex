@@ -11,7 +11,7 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{multirow}
@@ -22,6 +22,8 @@
 \usepackage{subcaption}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{primaryblue}}{\thesection.}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{primaryblue}}{\thesubsection.}{1em}{}
 \usepackage{enumitem}
 \usepackage{tocloft}
 \usepackage{tikz}
@@ -34,6 +36,9 @@
 \definecolor{backcolour}{rgb}{0.96,0.96,0.96}
 \definecolor{primaryblue}{rgb}{0.01,0.45,0.73}
 \definecolor{gsvblue}{rgb}{0.0,0.25,0.5}
+
+% --- Table Rule Width Fix for PDF Viewers ---
+\setlength{\arrayrulewidth}{0.8pt}
 
 % --- Listing Style ---
 \lstdefinestyle{mystyle}{
@@ -73,22 +78,25 @@
 \centering
 \begin{doublespace}
 {\Large \textbf{Internship Report}}\\[0.8cm]
-{\Large \textbf{FACELIVENESS AI: BIOMETRIC AUTHENTICATION \& FACE LIVENESS DETECTION SYSTEM}}\\[0.8cm]
+{\Large \textbf{FACELIVENESS AI: A FACE LIVENESS DETECTION SYSTEM}}\\[0.8cm]
 {\large \textit{A report submitted}}\\[0.2cm]
 {\large \textit{In partial fulfillment of the requirements}}\\[0.2cm]
 {\large \textit{for the degree of}}\\[0.8cm]
-{\Large \textbf{B.Tech in Computer Science \& Engineering}}\\[0.6cm]
-{\large by}\\[0.4cm]
-{\large \textbf{Vikash Kumar} \quad (\textbf{Roll Number: 23000000})}\\[1.0cm]
-{\large \textit{to the}}\\[0.3cm]
-{\Large \textbf{School of Technology}}\\[0.6cm]
+{\Large \textbf{B.Tech}}\\[0.6cm]
+{\large by}\\[0.1cm]
+{\large \textbf{Vikash Kumar} (\textbf{23AI054})}\\[0.2cm]
+{\large \textit{to the}}\\[0.1cm]
 
-\includegraphics[width=3.2cm]{gsv_logo.jpg}\\[0.4cm]
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.3\textwidth]{gsv.jpg}
+  \label{fig:my_image}
+\end{figure}
 
 {\large \textbf{GATI SHAKTI VISHWAVIDYALAYA}}\\[0.2cm]
 {\small \textbf{Central University, Under Ministry of Railways}}\\[0.1cm]
 {\small \textbf{Vadodara, India-390004}}\\[0.8cm]
-{\large \textbf{Date: July 2026}}
+{\large \textbf{Date: 31 July 2026}}
 \end{doublespace}
 \end{titlepage}
 
@@ -107,16 +115,16 @@
 \end{center}
 
 \vspace{1cm}
-\noindent This is to certify that the work contained in the project titled ``\textbf{FaceLiveness AI: Biometric Authentication \& Face Liveness Detection System}'' has been successfully completed by the following student under my/our supervision during an \textbf{8-week} summer internship. During the internship period, the student was found to be hard working, punctual, disciplined, and met all the evaluation criteria satisfactorily.
+\noindent This is to certify that the work contained in the project titled ``\textbf{FaceLiveness AI: A Face Liveness Detection System}'' has been successfully completed by the following student under my/our supervision during an \textbf{8-week} summer internship. During the internship period, the student was found to be hard working, punctual, disciplined, and met all the evaluation criteria satisfactorily.
 
 \vspace{2cm}
 \noindent
 \begin{tabular}{p{5cm}p{5cm}p{5cm}}
 \textbf{Student Name} & \textbf{Roll Number} & \textbf{Signature} \\[0.5cm]
-1. Vikash Kumar & 23000000 & \dotfill \\
+1. Vikash Kumar & 23AI054 & \dotfill \\
 \end{tabular}
 
-\vspace{4cm}
+\vspace{3cm}
 \begin{flushright}
 \fbox{%
 \begin{minipage}[t]{8.5cm}
@@ -131,7 +139,7 @@
 \end{flushright}
 
 \vspace{1.5cm}
-\noindent \textbf{Date:} \dotfill
+\noindent \textbf{Date: 31 July 2026} 
 
 \newpage
 
@@ -146,9 +154,9 @@
 \vspace{0.8cm}
 
 \begin{doublespace}
-I take this opportunity to express my sincere thanks to my mentor for their invaluable guidance and support throughout the 8-week duration of this summer internship project. I would also like to express my gratitude towards them for showing confidence in me. It was a privilege to have a great experience working under them in a cordial and inspiring technical environment.
+I take this opportunity to express my sincere thanks to my mentor \textbf{Sh. Pankaj Roy} for their invaluable guidance and support throughout the \textbf{8-week} duration of this summer internship project. I would also like to express my gratitude towards them for showing confidence in me. It was a privilege to have a great experience working under them in a cordial and inspiring technical environment.
 
-I am very much thankful to \textbf{Gati Shakti Vishwavidyalaya (GSV)}, Vadodara for providing me the opportunity of pursuing this summer internship project on AI-powered biometric authentication systems. I am very much thankful to the project supervisors and Industry mentors for providing computing resources and technical guidance required to execute this work.
+I am very much thankful to \textbf{National Capital Region Transport Corporation (NCRTC), Delhi} for providing me the opportunity of pursuing this summer internship project: \textbf{FaceLiveness AI: A Face Liveness Detection System}. I am very much thankful to the project supervisors and Industry mentors for providing computing resources and technical guidance required to execute this work.
 
 I am thankful to the office staff, faculty members, and fellow students who directly or indirectly supported me in successfully deploying this platform.
 \end{doublespace}
@@ -156,7 +164,7 @@ I am thankful to the office staff, faculty members, and fellow students who dire
 \vspace{2cm}
 \begin{flushright}
 \textbf{Vikash Kumar}\\
-(Roll No: 23000000)
+(Roll No: 23AI054)
 \end{flushright}
 
 \newpage
@@ -164,8 +172,12 @@ I am thankful to the office staff, faculty members, and fellow students who dire
 % =========================================================================
 % PAGE 4: ABSTRACT
 % =========================================================================
-\section*{Abstract}
+\vspace*{0.5cm}
+\begin{center}
+{\Large \textbf{Abstract}}
+\end{center}
 \addcontentsline{toc}{section}{Abstract}
+\vspace{0.8cm}
 
 \begin{doublespace}
 Biometric identity verification systems have emerged as a critical safeguard in modern digital security ecosystems. However, conventional face recognition solutions suffer from acute vulnerabilities to presentation attacks (spoofing), including static high-resolution photographs, pre-recorded video playbacks, and 3D silicone masks. This technical report presents \textbf{FaceLiveness AI}, a full-stack, enterprise-grade biometric authentication and passwordless access control platform engineered with browser-native deep learning models and real-time interactive liveness detection.
@@ -180,10 +192,6 @@ This report details the theoretical foundation, software architecture, comparati
 % =========================================================================
 % PAGE 5 & 6: CONTENTS AND LISTS
 % =========================================================================
-\renewcommand{\contentsname}{\textcolor{primaryblue}{Contents}}
-\renewcommand{\listfigurename}{\textcolor{primaryblue}{List of Figures}}
-\renewcommand{\listtablename}{\textcolor{primaryblue}{List of Tables}}
-
 \tableofcontents
 \newpage
 
@@ -200,23 +208,22 @@ This report details the theoretical foundation, software architecture, comparati
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{p{3.5cm}p{11cm}}
-\toprule
-\textbf{Symbol / Abbr.} & \textbf{Description} \\
-\midrule
-$\text{EAR}$ & Eye Aspect Ratio \\
-$\text{FLD}$ & Face Liveness Detection \\
-$\text{PAD}$ & Presentation Attack Detection \\
-$\text{FAR}$ & False Acceptance Rate \\
-$\text{FRR}$ & False Rejection Rate \\
-$\mathbb{R}^{128}$ & 128-Dimensional Real-Valued Vector Space \\
-$\text{tRPC}$ & TypeScript Remote Procedure Call \\
-$\text{ORM}$ & Object-Relational Mapping \\
-$\text{PaaS}$ & Platform as a Service \\
-$\text{SSL/TLS}$ & Secure Sockets Layer / Transport Layer Security \\
-$\text{FPS}$ & Frames Per Second \\
-$\text{MobileNetV2}$ & Mobile Neural Network Architecture Version 2 \\
-\bottomrule
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{3.5cm}|p{11cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Symbol / Abbr.} & \textbf{Description} \\ \hline
+$\text{EAR}$ & Eye Aspect Ratio \\ \hline
+$\text{FLD}$ & Face Liveness Detection \\ \hline
+$\text{PAD}$ & Presentation Attack Detection \\ \hline
+$\text{FAR}$ & False Acceptance Rate \\ \hline
+$\text{FRR}$ & False Rejection Rate \\ \hline
+$\mathbb{R}^{128}$ & 128-Dimensional Real-Valued Vector Space \\ \hline
+$\text{tRPC}$ & TypeScript Remote Procedure Call \\ \hline
+$\text{ORM}$ & Object-Relational Mapping \\ \hline
+$\text{PaaS}$ & Platform as a Service \\ \hline
+$\text{SSL/TLS}$ & Secure Sockets Layer / Transport Layer Security \\ \hline
+$\text{FPS}$ & Frames Per Second \\ \hline
+$\text{MobileNetV2}$ & Mobile Neural Network Architecture Version 2 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -241,24 +248,22 @@ The primary objectives of this project are:
     \item Develop an interactive, browser-executable face liveness detection engine that runs entirely client-side using WebGL acceleration.
     \item Implement a dual-stage liveness challenge combining Eye Aspect Ratio (EAR) blink tracking and randomized secondary physical challenges (head rotations / mouth opening).
     \item Build a type-safe API infrastructure using tRPC and Drizzle ORM connected to cloud MySQL.
-    \item Achieve sub-4-second verification times with $> 98\%$ recognition accuracy and zero server GPU hosting costs.
-    \item Deploy the full-stack system completely free of charge on public cloud PaaS infrastructure with automated HTTPS SSL encryption.
+    \item Achieve 6 to 7 second verification times with $> 98\%$ recognition accuracy and zero server GPU hosting costs.
+    \item Deploy the full-stack system completely free of cost on public cloud PaaS infrastructure with automated HTTPS and SSL encryption.
 \end{enumerate}
 
 \subsection{Organization of Report}
 The remainder of this report is organized as follows:
 \begin{itemize}
-    \item \textbf{Chapter 2 (Methodology):} Details the full system architecture, deep learning model pipeline, mathematical liveness formulas, and database schema.
-    \item \textbf{Chapter 3 (Exploratory Data Analysis \& Benchmarks):} Presents accuracy performance evaluation, FAR/FRR trade-off curves, and latency measurements.
-    \item \textbf{Chapter 4 (Outcomes \& Discussion):} Provides an in-depth comparative technology trade-off analysis and threat matrix evaluation.
-    \item \textbf{Chapter 5 (Implications \& Policy Recommendations):} Discusses GDPR/CCPA data privacy compliance and production security policies.
-    \item \textbf{Chapter 6 (Weekly Overview of Internship Activity):} Outlines the week-by-week progress across the 8-week internship period.
+    \item \textbf{Methodology:} Details the full system architecture, deep learning model pipeline, mathematical liveness formulas, and database schema.
+    \item \textbf{Exploratory Data Analysis \& Benchmarks:} Presents accuracy performance evaluation, FAR/FRR trade-off curves, and latency measurements.
+    \item \textbf{Outcomes \& Discussion:} Provides an in-depth comparative technology trade-off analysis and threat matrix evaluation.
+    \item \textbf{Implications \& Policy Recommendations:} Discusses GDPR/CCPA data privacy compliance and production security policies.
+    \item \textbf{Weekly Overview of Internship Activity:} Outlines the week-by-week progress across the 8-week internship period.
 \end{itemize}
 
 \subsection{Organization Information}
-This project was carried out as part of the summer internship requirements at \textbf{Gati Shakti Vishwavidyalaya (GSV)}, a Central University under the Ministry of Railways, Vadodara, Gujarat.
-
----
+This project was carried out as part of the summer internship requirements at \textbf{National Capital Region Transport Corporation (NCRTC)} – a joint venture company of Govt of India and States of Delhi, Haryana, Rajasthan and Uttar Pradesh is mandated for implementing the Namo Bharat project across the National Capital Region, ensuring a balanced and sustainable urban development through better connectivity and access.
 
 % =========================================================================
 % CHAPTER 2: METHODOLOGY
@@ -294,7 +299,7 @@ The system consists of a decoupled client-server architecture. Figure~\ref{fig:a
 
 \subsection{Biometric AI and Liveness Algorithms}
 
-\subsubsection{1. Facial Feature Detection and Landmark Extraction}
+\subsubsection{Facial Feature Detection and Landmark Extraction}
 The client loads four pre-trained deep convolutional neural networks via CDN:
 \begin{enumerate}
     \item \textbf{TinyFaceDetector:} A lightweight single-shot detector based on MobileNetV2 for rapid face boundary box detection in stream frames (~5–10 FPS).
@@ -340,7 +345,7 @@ Figure~\ref{fig:landmarks} presents the centered 68-point landmark geometry used
 \label{fig:landmarks}
 \end{figure}
 
-\subsubsection{2. Eye Aspect Ratio (EAR) Blink Detection}
+\subsubsection{Eye Aspect Ratio (EAR) Blink Detection}
 To detect eye blinks, 6 facial landmark points are extracted for each eye ($P_{36} \dots P_{41}$ for left eye, $P_{42} \dots P_{47}$ for right eye).
 
 \begin{equation}
@@ -402,21 +407,19 @@ Figure~\ref{fig:flowchart} details the vertically aligned dual-stage liveness st
 \label{fig:flowchart}
 \end{figure}
 
-\subsubsection{3. Head Yaw Rotation Ratio}
+\subsubsection{Head Yaw Rotation Ratio}
 Head rotation is calculated using the relative displacement between nose tip ($P_{27}$) and cheek contours ($P_2, P_{14}$):
 \begin{equation}
 \text{Yaw Ratio} = \frac{\text{Distance}(P_2, P_{27})}{\text{Distance}(P_{14}, P_{27})}
 \end{equation}
 
-\subsubsection{4. 1:1 Euclidean Descriptor Distance}
+\subsubsection{1:1 Euclidean Descriptor Distance}
 For live descriptor vector $\mathbf{A} \in \mathbb{R}^{128}$ and stored template vector $\mathbf{B} \in \mathbb{R}^{128}$:
 \begin{equation}
 D(\mathbf{A}, \mathbf{B}) = \sqrt{\sum_{i=1}^{128} (A_i - B_i)^2}
 \end{equation}
 
 A match is confirmed when $D(\mathbf{A}, \mathbf{B}) < 0.60$.
-
----
 
 % =========================================================================
 % CHAPTER 3: EXPLORATORY DATA ANALYSIS & PERFORMANCES
@@ -429,23 +432,20 @@ The performance of FaceLiveness AI was benchmarked across 100 test runs on diver
 
 \begin{table}[h!]
 \centering
+\renewcommand{\arraystretch}{1.3}
 \caption{System Performance and Benchmark Metrics}
 \label{tab:performance_results}
-\begin{tabular}{p{6cm}p{4cm}p{4cm}}
-\toprule
-\textbf{Metric Parameter} & \textbf{Measured Value} & \textbf{Target Benchmark} \\
-\midrule
-\textbf{Face Recognition Accuracy} & 98.6\% & $> 95.0\%$ \\
-\textbf{Blink Detection True Positive Rate} & 97.4\% & $> 95.0\%$ \\
-\textbf{False Acceptance Rate (FAR)} & $< 0.1\%$ & $< 0.5\%$ \\
-\textbf{False Rejection Rate (FRR)} & 1.4\% & $< 2.0\%$ \\
-\textbf{Average Authentication Time} & 3.8 seconds & $< 5.0\text{ seconds}$ \\
-\textbf{Client Frame Inference Rate} & 5--10 FPS & $> 5\text{ FPS}$ \\
-\bottomrule
+\begin{tabular}{|p{6.5cm}|p{4.2cm}|p{4.2cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Metric Parameter} & \textbf{Measured Value} & \textbf{Target Benchmark} \\ \hline
+Face Recognition Accuracy & 98.6\% & $> 95.0\%$ \\ \hline
+Blink Detection True Positive Rate & 97.4\% & $> 95.0\%$ \\ \hline
+False Acceptance Rate (FAR) & $< 0.1\%$ & $< 0.5\%$ \\ \hline
+False Rejection Rate (FRR) & 1.4\% & $< 2.0\%$ \\ \hline
+Average Authentication Time & 3.8 seconds & $< 5.0\text{ seconds}$ \\ \hline
+Client Frame Inference Rate & 5--10 FPS & $> 5\text{ FPS}$ \\ \hline
 \end{tabular}
 \end{table}
-
----
 
 % =========================================================================
 % CHAPTER 4: OUTCOMES AND DISCUSSION
@@ -458,21 +458,17 @@ Table~\ref{tab:tech_matrix} presents a comparative evaluation of chosen technolo
 
 \begin{table}[h!]
 \centering
+\renewcommand{\arraystretch}{1.3}
 \caption{Technology Evaluation and Trade-Off Matrix}
 \label{tab:tech_matrix}
 \small
-\begin{tabular}{p{2.5cm}p{3.5cm}p{4.5cm}p{4.5cm}}
-\toprule
-\textbf{Component} & \textbf{Selected Tech} & \textbf{Key Advantages} & \textbf{Disadvantages / Mitigations} \\
-\midrule
-\textbf{Frontend} & React 19 + Vite & Virtual DOM, sub-second HMR builds. & Larger bundle size; mitigated by code-splitting. \\
+\begin{tabular}{|p{2.5cm}|p{3.0cm}|p{4.5cm}|p{4.8cm}|}
 \hline
-\textbf{Biometric Engine} & face-api.js & Zero server GPU cost, client privacy. & Dependent on client CPU/GPU. \\
-\hline
-\textbf{API Layer} & tRPC + Zod & End-to-end type safety. & Tightly coupled TypeScript stack. \\
-\hline
-\textbf{Database} & Aiven MySQL 8.0 & Managed SSL, zero maintenance. & Free tier spins down during inactivity. \\
-\bottomrule
+\rowcolor{gray!15} \textbf{Component} & \textbf{Selected Tech} & \textbf{Key Advantages} & \textbf{Disadvantages / Mitigations} \\ \hline
+\textbf{Frontend} & React 19 + Vite & Virtual DOM, sub-second HMR builds. & Larger bundle size; mitigated by code-splitting. \\ \hline
+\textbf{Biometric Engine} & face-api.js & Zero server GPU cost, client privacy. & Dependent on client CPU/GPU. \\ \hline
+\textbf{API Layer} & tRPC + Zod & End-to-end type safety. & Tightly coupled TypeScript stack. \\ \hline
+\textbf{Database} & Aiven MySQL 8.0 & Managed SSL, zero maintenance. & Free tier spins down during inactivity. \\ \hline
 \end{tabular}
 \end{table}
 
@@ -481,23 +477,18 @@ Table~\ref{tab:security_threats} illustrates system mitigations against common a
 
 \begin{table}[h!]
 \centering
+\renewcommand{\arraystretch}{1.3}
 \caption{Threat Matrix and Security Control Measures}
 \label{tab:security_threats}
 \small
-\begin{tabular}{p{3.5cm}p{5.5cm}p{5.5cm}}
-\toprule
-\textbf{Attack Vector} & \textbf{Threat Mechanism} & \textbf{System Mitigation Control} \\
-\midrule
-\textbf{Static Photo Attack} & Printed photo / tablet picture. & Stage 1 EAR Blink Detection fails. \\
+\begin{tabular}{|p{3.5cm}|p{5.5cm}|p{6.2cm}|}
 \hline
-\textbf{Video Replay Attack} & Video recording playback. & Stage 2 Randomized Challenge fails. \\
-\hline
-\textbf{Multi-Face Spoofing} & Secondary face insertion. & Multi-Face Guard aborts detection if count $> 1$. \\
-\bottomrule
+\rowcolor{gray!15} \textbf{Attack Vector} & \textbf{Threat Mechanism} & \textbf{System Mitigation Control} \\ \hline
+\textbf{Static Photo Attack} & Printed photo / tablet picture. & Stage 1 EAR Blink Detection fails. \\ \hline
+\textbf{Video Replay Attack} & Video recording playback. & Stage 2 Randomized Challenge fails. \\ \hline
+\textbf{Multi-Face Spoofing} & Secondary face insertion. & Multi-Face Guard aborts detection if count $> 1$. \\ \hline
 \end{tabular}
 \end{table}
-
----
 
 % =========================================================================
 % CHAPTER 5: IMPLICATIONS AND POLICY RECOMMENDATIONS
@@ -513,8 +504,6 @@ To comply with GDPR and CCPA regulations:
     \item Users must be provided an automated "Danger Zone" account deletion feature to irreversibly purge stored embeddings.
 \end{enumerate}
 
----
-
 % =========================================================================
 % CHAPTER 6: WEEKLY OVERVIEW OF INTERNSHIP ACTIVITY (8 WEEKS)
 % =========================================================================
@@ -525,29 +514,21 @@ During the 8-week summer internship period, the project was executed systematica
 
 \begin{table}[h!]
 \centering
+\renewcommand{\arraystretch}{1.3}
 \caption{Weekly Overview of 8-Week Internship Activities}
 \label{tab:weekly_summary}
 \small
-\begin{tabular}{p{1.5cm}p{4.5cm}p{8cm}}
-\toprule
-\textbf{Week} & \textbf{Focus Area} & \textbf{Key Technical Activities \& Achievements} \\
-\midrule
-\textbf{Week 1} & Literature Review \& Requirements Analysis & Researched presentation attack detection (PAD) standards, surveyed dlib/TensorFlow.js algorithms, defined project scope and target metrics. \\
+\begin{tabular}{|p{1.5cm}|p{4.2cm}|p{9.0cm}|}
 \hline
-\textbf{Week 2} & Computer Vision Engine Setup & Integrated \texttt{face-api.js} with MobileNetV2 TinyFaceDetector, implemented camera stream viewport rendering in React 19. \\
-\hline
-\textbf{Week 3} & Liveness Algorithm Implementation & Formulated Eye Aspect Ratio (EAR) blink detection state machine, implemented head yaw and mouth ratio verification modules. \\
-\hline
-\textbf{Week 4} & Full-Stack API Architecture & Built tRPC API router with Zod input validation schemas, setup Express server middleware, configured JWT authentication. \\
-\hline
-\textbf{Week 5} & Database \& Vector Embeddings & Provisioned Aiven Cloud MySQL 8.0 instance, implemented Drizzle ORM schemas, built 1:1 Euclidean vector matching procedure. \\
-\hline
-\textbf{Week 6} & Security Guardrails \& Spoof Testing & Integrated multi-face detection guard, implemented bcrypt password hashing, performed anti-spoofing tests with printed photos/video replays. \\
-\hline
-\textbf{Week 7} & Dockerization \& Cloud Deployment & Created multi-stage Alpine Dockerfile, configured Render PaaS automated GitHub CI/CD build pipeline with SSL certificate enforcement. \\
-\hline
-\textbf{Week 8} & Performance Benchmarking \& Report & Conducted 100 benchmark test authentication runs, compiled FAR/FRR accuracy metrics, finalized comprehensive technical documentation. \\
-\bottomrule
+\rowcolor{gray!15} \textbf{Week} & \textbf{Focus Area} & \textbf{Key Technical Activities \& Achievements} \\ \hline
+\textbf{Week 1} & Literature Review \& Requirements Analysis & Researched presentation attack detection (PAD) standards, surveyed dlib/TensorFlow.js algorithms, defined project scope and target metrics. \\ \hline
+\textbf{Week 2} & Computer Vision Engine Setup & Integrated \texttt{face-api.js} with MobileNetV2 TinyFaceDetector, implemented camera stream viewport rendering in React 19. \\ \hline
+\textbf{Week 3} & Liveness Algorithm Implementation & Formulated Eye Aspect Ratio (EAR) blink detection state machine, implemented head yaw and mouth ratio verification modules. \\ \hline
+\textbf{Week 4} & Full-Stack API Architecture & Built tRPC API router with Zod input validation schemas, setup Express server middleware, configured JWT authentication. \\ \hline
+\textbf{Week 5} & Database \& Vector Embeddings & Provisioned Aiven Cloud MySQL 8.0 instance, implemented Drizzle ORM schemas, built 1:1 Euclidean vector matching procedure. \\ \hline
+\textbf{Week 6} & Security Guardrails \& Spoof Testing & Integrated multi-face detection guard, implemented bcrypt password hashing, performed anti-spoofing tests with printed photos/video replays. \\ \hline
+\textbf{Week 7} & Dockerization \& Cloud Deployment & Created multi-stage Alpine Dockerfile, configured Render PaaS automated GitHub CI/CD build pipeline with SSL certificate enforcement. \\ \hline
+\textbf{Week 8} & Performance Benchmarking \& Report & Conducted 100 benchmark test authentication runs, compiled FAR/FRR accuracy metrics, finalized comprehensive technical documentation. \\ \hline
 \end{tabular}
 \end{table}
 
@@ -609,12 +590,9 @@ During the 8-week summer internship period, the project was executed systematica
     \item Authored final internship project report in accordance with Gati Shakti Vishwavidyalaya format.
 \end{itemize}
 
----
-
 % =========================================================================
 % REFERENCES
 % =========================================================================
-\section*{References}
 \addcontentsline{toc}{section}{References}
 
 \begin{thebibliography}{99}

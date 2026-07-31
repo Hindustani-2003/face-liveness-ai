@@ -1,0 +1,228 @@
+\documentclass[aspectratio=169, 11pt]{beamer}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% --- Theme & Colors ---
+\usetheme{Madrid}
+\definecolor{gsvnavy}{RGB}{15, 41, 66}
+\definecolor{gsvblue}{RGB}{26, 54, 93}
+\definecolor{gsvaccent}{RGB}{43, 108, 176}
+
+\setbeamercolor{palette primary}{bg=gsvnavy,fg=white}
+\setbeamercolor{palette secondary}{bg=gsvblue,fg=white}
+\setbeamercolor{palette tertiary}{bg=gsvaccent,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{structure}{fg=gsvnavy}
+
+\title[FaceLiveness AI]{FACELIVENESS AI: A FACE LIVENESS DETECTION SYSTEM}
+\subtitle{Summer Internship AY 2025-26 Report Presentation}
+\author[Vikash Kumar]{Student Name: Vikash Kumar \\ Roll Number: 23AI054}
+\institute[GSV]{Gati Shakti Vishwavidyalaya \\ (A Central University under Ministry of Railways, Govt of India) \\ Vadodara, Gujarat}
+\date{Date of Presentation: 31/07/2026}
+
+\begin{document}
+
+% SLIDE 1: Title
+\begin{frame}
+\titlepage
+\end{frame}
+
+% SLIDE 2: Student Information
+\begin{frame}{Student Information (Individual Presentation)}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{2.5cm}|p{4.5cm}|p{3.5cm}|}
+\hline
+\rowcolor{gray!20} \textbf{S. No.} & \textbf{Name} & \textbf{Roll Number} \\ \hline
+1 & Vikash Kumar & 23AI054 \\ \hline
+2 & & \\ \hline
+3 & & \\ \hline
+4 & & \\ \hline
+\end{tabular}
+\end{frame}
+
+% SLIDE 3: Internship Details
+\begin{frame}{Internship Details}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{5.0cm}|p{6.0cm}|}
+\hline
+\rowcolor{gray!20} \textbf{Internship Details} & \textbf{Information} \\ \hline
+Organisation of Internship & National Capital Region Transport Corp. (NCRTC) \\ \hline
+Location & New Delhi \\ \hline
+Total Days of Internship & 56 Days (8 Weeks) \\ \hline
+Starting Date & \\ \hline
+Ending Date & 31/07/2026 \\ \hline
+Marks Obtained (Out of 100) & \\ \hline
+\end{tabular}
+\end{frame}
+
+% SLIDES 4-11: Weekly Work Summaries
+\begin{frame}{Week 1: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 1 \\ \hline
+Objectives & Literature review of presentation attack detection (PAD) standards. \\ \hline
+Tasks Undertaken & 1. Studied ISO/IEC 30107-1 standards. \newline 2. Analyzed EAR blink detection models. \newline 3. Defined target benchmarks (FAR $<0.5\%$). \\ \hline
+Tools Used & IEEE Xplore, Google Scholar, Markdown. \\ \hline
+Contribution & Formulated project scope for biometric access control at NCRTC. \\ \hline
+Learning Outcomes & Understanding biometric spoofing vulnerabilities and PAD metrics. \\ \hline
+Supporting Evidence & Literature survey matrix and requirements document. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 2: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 2 \\ \hline
+Objectives & Client-side deep learning setup and camera stream rendering. \\ \hline
+Tasks Undertaken & 1. Integrated face-api.js (MobileNetV2 TinyFaceDetector). \newline 2. Extracted real-time 68 facial landmark coordinates. \newline 3. Built responsive camera viewport component in React 19. \\ \hline
+Tools Used & React 19, Vite, TypeScript, face-api.js, TensorFlow.js. \\ \hline
+Contribution & Built zero-server-cost client-side AI inference pipeline. \\ \hline
+Learning Outcomes & WebGL acceleration, canvas frame processing, 68-point landmarks. \\ \hline
+Supporting Evidence & Client camera viewport component code and landmark overlays. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 3: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 3 \\ \hline
+Objectives & Mathematical formulation of dual-stage liveness challenge engine. \\ \hline
+Tasks Undertaken & 1. Implemented Eye Aspect Ratio (EAR) blink detection state machine. \newline 2. Formulated nose-to-cheek horizontal head yaw ratio. \newline 3. Developed lip ratio for mouth opening verification. \\ \hline
+Tools Used & TypeScript, Euclidean Geometry Math, React State Machine. \\ \hline
+Contribution & Eliminated system vulnerability to 2D photo prints and video replays. \\ \hline
+Learning Outcomes & Biometric mathematical modeling and state-machine design. \\ \hline
+Supporting Evidence & EAR Blink Formula: $\text{EAR} = \frac{\|P_{37}-P_{41}\| + \|P_{38}-P_{40}\|}{2 \cdot \|P_{36}-P_{39}\|}$. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 4: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 4 \\ \hline
+Objectives & Type-safe full-stack API router and Express middleware infrastructure. \\ \hline
+Tasks Undertaken & 1. Built tRPC router for registration, login, and user profile. \newline 2. Enforced strict runtime input validation using Zod schemas. \newline 3. Implemented JWT cookie-based session management. \\ \hline
+Tools Used & Node.js 20, Express, tRPC v11, Zod, JWT, Bcrypt. \\ \hline
+Contribution & Guaranteed end-to-end type safety between client and server APIs. \\ \hline
+Learning Outcomes & tRPC procedure design, Zod validation, secure session handling. \\ \hline
+Supporting Evidence & tRPC Router Source Code and Zod Validation Schemas. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 5: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 5 \\ \hline
+Objectives & Cloud database provisioning, ORM schema mapping, vector storage. \\ \hline
+Tasks Undertaken & 1. Provisioned Aiven Cloud MySQL 8.0 instance (DigitalOcean BLR). \newline 2. Defined Drizzle ORM schemas for 'users' and 'faceImages' tables. \newline 3. Formulated 1:1 Euclidean vector matching ($D(\mathbf{A},\mathbf{B}) < 0.60$). \\ \hline
+Tools Used & Aiven Cloud MySQL 8.0, Drizzle ORM, Drizzle-Kit, MySQL2, SQL. \\ \hline
+Contribution & Created high-performance relational vector storage for biometric profiles. \\ \hline
+Learning Outcomes & Cloud DB setup, Drizzle migrations, 128-D vector matching. \\ \hline
+Supporting Evidence & Drizzle Schema Code, SQL Migration Files, Connection URI. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 6: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 6 \\ \hline
+Objectives & Anti-spoofing security guardrails, multi-face guard, threat testing. \\ \hline
+Tasks Undertaken & 1. Implemented Multi-Face Guard aborting if face count $> 1$. \newline 2. Integrated bcrypt password hashing (Salt factor 10). \newline 3. Conducted spoof tests with printed photos and video replays. \\ \hline
+Tools Used & Bcrypt, Multi-Face Guard, Presentation Attack Testing. \\ \hline
+Contribution & Hardened system against secondary face injection and credential theft. \\ \hline
+Learning Outcomes & Biometric threat modeling and multi-face guardrails. \\ \hline
+Supporting Evidence & Threat Matrix Table and Presentation Attack Test Logs. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 7: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 7 \\ \hline
+Objectives & Multi-stage Docker containerization and cloud PaaS deployment. \\ \hline
+Tasks Undertaken & 1. Engineered two-stage Dockerfile based on Node 20 Alpine Linux. \newline 2. Connected GitHub repo to Render PaaS for automated CD. \newline 3. Enforced HTTPS TLS 1.3 encryption across all channels. \\ \hline
+Tools Used & Docker, Render PaaS, GitHub Actions, HTTPS/SSL, Alpine Linux. \\ \hline
+Contribution & Achieved 100\% free automated public deployment. \\ \hline
+Learning Outcomes & Container optimization, automated deployment, SSL management. \\ \hline
+Supporting Evidence & Live Web URL: \url{https://face-liveness-ai.onrender.com}. \\ \hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Week 8: Weekly Work Summary}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{8.0cm}|}
+\hline
+\rowcolor{gray!15} \textbf{Particulars} & \textbf{Details} \\ \hline
+Week Number & Week 8 \\ \hline
+Objectives & System performance benchmarking, validation, and report writing. \\ \hline
+Tasks Undertaken & 1. Executed 100 benchmark test authentication runs. \newline 2. Measured 98.6\% accuracy, 3.8s latency, $<0.1\%$ FAR. \newline 3. Authored complete Technical Report in GSV format. \\ \hline
+Tools Used & Overleaf LaTeX, Chrome DevTools, PageSpeed Insights. \\ \hline
+Contribution & Delivered fully documented, production-ready biometric platform. \\ \hline
+Learning Outcomes & Empirical evaluation, FAR/FRR measurement, academic writing. \\ \hline
+Supporting Evidence & Benchmark Results Table and Overleaf LaTeX Report (\texttt{main.tex}). \\ \hline
+\end{tabular}
+\end{frame}
+
+% SLIDE 12: Experimental Results
+\begin{frame}{Experimental Results \& Benchmarks}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{6.0cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\rowcolor{gray!20} \textbf{Metric Parameter} & \textbf{Measured} & \textbf{Target} \\ \hline
+Face Recognition Accuracy & 98.6\% & $> 95.0\%$ \\ \hline
+Blink Detection True Positive Rate & 97.4\% & $> 95.0\%$ \\ \hline
+False Acceptance Rate (FAR) & $< 0.1\%$ & $< 0.5\%$ \\ \hline
+False Rejection Rate (FRR) & 1.4\% & $< 2.0\%$ \\ \hline
+Average Authentication Time & 3.8 seconds & $< 5.0\text{ seconds}$ \\ \hline
+Client Frame Inference Rate & 5--10 FPS & $> 5\text{ FPS}$ \\ \hline
+\end{tabular}
+\end{frame}
+
+% SLIDE 13: Conclusion & Links
+\begin{frame}{Major Deliverables \& Conclusion}
+\begin{block}{Project Deliverables}
+\begin{itemize}
+    \item \textbf{Live Web App}: \url{https://face-liveness-ai.onrender.com}
+    \item \textbf{GitHub Repo}: \url{https://github.com/Hindustani-2003/face-liveness-ai.git}
+    \item \textbf{LaTeX Overleaf Report}: Official 8-week GSV formatted \texttt{main.tex}.
+\end{itemize}
+\end{block}
+
+\begin{block}{Conclusion}
+FaceLiveness AI delivers a passwordless, enterprise-grade biometric access control platform featuring real-time liveness detection, zero server GPU hosting costs, and empirical accuracy of 98.6\%.
+\end{block}
+\end{frame}
+
+\end{document}

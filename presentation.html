@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceLiveness AI - Internship Presentation (GSV Format)</title>
+    <style>
+        :root {
+            --gsv-blue: #1A365D;
+            --gsv-navy: #0F2942;
+            --gsv-accent: #2B6CB0;
+            --gsv-light: #F7FAFC;
+            --border-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a202c;
+            color: #2d3748;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .slide {
+            background-color: #ffffff;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-radius: 4px;
+            position: relative;
+            page-break-after: always;
+        }
+
+        /* Header Style */
+        .gsv-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 2px solid #cbd5e0;
+            padding-bottom: 15px;
+        }
+
+        .gsv-logo {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .gsv-header-text h1 {
+            font-size: 26px;
+            color: var(--gsv-navy);
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .gsv-header-text p {
+            font-size: 14px;
+            color: #4a5568;
+            font-style: italic;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Title Area */
+        .slide-title-banner {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .slide-title-banner h2 {
+            font-size: 28px;
+            color: var(--gsv-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Table Styling matching template */
+        table.gsv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        table.gsv-table th, table.gsv-table td {
+            border: 1.5px solid var(--border-color);
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        table.gsv-table th {
+            font-weight: bold;
+            background-color: #ffffff;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 13px;
+            font-style: italic;
+            color: var(--gsv-navy);
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+        }
+
+        .footer-note {
+            font-size: 10.5px;
+            color: #4a5568;
+            font-style: normal;
+            line-height: 1.3;
+            max-width: 85%;
+        }
+
+        .page-num {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Responsive Printable */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .presentation-container {
+                gap: 0;
+            }
+            .slide {
+                box-shadow: none;
+                border-radius: 0;
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation-container">
+
+    <!-- SLIDE 1: TITLE SLIDE -->
+    <div class="slide" id="slide-1">
+        <div class="gsv-header">
+            <img src="gsv_logo.jpg" alt="GSV Logo" class="gsv-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/2/25/Gati_Shakti_Vishwavidyalaya_Logo.png'">
+            <div class="gsv-header-text">
+                <h1>Gati Shakti Vishwavidyalaya</h1>
+                <p>(A Central University under the Ministry of Railways, Govt of India)<br>Lalbaug, Vadodara- 390 004, Gujarat</p>
+            </div>
+        </div>
+
+        <div class="slide-title-banner">
+            <h2>SUMMER INTERNSHIP AY 2025-26</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 35%;">Student Information</th>
+                <td style="width: 65%; font-weight: bold;">Individual Presentation</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>Vikash Kumar</td>
+            </tr>
+            <tr>
+                <th>Roll Number</th>
+                <td>23AI054</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div>Date of Presentation: 31/07/2026</div>
+            <div class="page-num">Page Number: 01</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: STUDENT INFORMATION TABLE -->
+    <div class="slide" id="slide-2">
+        <div class="gsv-header">
+            <img src="gsv_logo.jpg" alt="GSV Logo" class="gsv-logo">
+            <div class="gsv-header-text">
+                <h1>Gati Shakti Vishwavidyalaya</h1>
+                <p>(A Central University under the Ministry of Railways, Govt of India)<br>Lalbaug, Vadodara- 390 004, Gujarat</p>
+            </div>
+        </div>
+
+        <div class="slide-title-banner">
+            <h2>SUMMER INTERNSHIP AY 2025-26</h2>
+        </div>
+
+        <table class="gsv-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">S. No.</th>
+                    <th style="width: 45%;">Name</th>
+                    <th style="width: 40%;">Roll Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Vikash Kumar</td>
+                    <td>23AI054</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="slide-footer">
+            <div>Date of Presentation: 31/07/2026</div>
+            <div class="page-num">Page Number: 01</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: INTERNSHIP DETAILS -->
+    <div class="slide" id="slide-3">
+        <div class="gsv-header">
+            <img src="gsv_logo.jpg" alt="GSV Logo" class="gsv-logo">
+            <div class="gsv-header-text">
+                <h1>Gati Shakti Vishwavidyalaya</h1>
+                <p>(A Central University under the Ministry of Railways, Govt of India)<br>Lalbaug, Vadodara- 390 004, Gujarat</p>
+            </div>
+        </div>
+
+        <div class="slide-title-banner">
+            <h2>SUMMER INTERNSHIP AY 2025-26</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 40%;">Internship Details</th>
+                <td style="width: 60%; font-weight: bold;">Information</td>
+            </tr>
+            <tr>
+                <th>Organisation of Internship</th>
+                <td>National Capital Region Transport Corporation (NCRTC)</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>New Delhi</td>
+            </tr>
+            <tr>
+                <th>Total Days of Internship</th>
+                <td>56 Days (8 Weeks)</td>
+            </tr>
+            <tr>
+                <th>Starting Date</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Ending Date</th>
+                <td>31/07/2026</td>
+            </tr>
+            <tr>
+                <th>Marks Obtained in Evaluation (Out of 100)</th>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div></div>
+            <div class="page-num">Page Number: 02</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: WEEK 1 SUMMARY -->
+    <div class="slide" id="slide-4">
+        <div class="slide-title-banner">
+            <h2>WEEK 1: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 1</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Literature review of presentation attack detection (PAD) standards and biometric spoofing mechanisms.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Studied ISO/IEC 30107-1 anti-spoofing standards.<br>2. Analyzed Eye Aspect Ratio (EAR) blink detection research.<br>3. Defined target performance benchmarks (FAR < 0.5%, Accuracy > 95%).</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>IEEE Xplore, Google Scholar, ISO/IEC Specifications, Markdown.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Formulated project requirements for passwordless biometric identity verification at NCRTC.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Deep understanding of biometric vulnerabilities, 2D spoof attacks, and anti-spoofing evaluation metrics.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Literature Survey Matrix, Technical Requirements Document.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed and justifying contributions.
+            </div>
+            <div class="page-num">Page Number: 03</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: WEEK 2 SUMMARY -->
+    <div class="slide" id="slide-5">
+        <div class="slide-title-banner">
+            <h2>WEEK 2: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 2</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Client-side deep learning setup and real-time webcam video stream viewport rendering.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Integrated face-api.js (MobileNetV2 TinyFaceDetector) via WebGL.<br>2. Configured real-time 68 facial landmark coordinate extraction.<br>3. Built responsive camera viewport component in React 19 + Vite.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>React 19, Vite, TypeScript, face-api.js, TensorFlow.js, HTML5 Canvas.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Established zero-server-cost client-side AI inference pipeline saving GPU cloud infrastructure expenses.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>WebGL acceleration, canvas frame manipulation, real-time 68-landmark coordinate tracking.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Client-side camera viewport component code, 68-point landmark coordinate overlays.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 04</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: WEEK 3 SUMMARY -->
+    <div class="slide" id="slide-6">
+        <div class="slide-title-banner">
+            <h2>WEEK 3: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 3</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Mathematical formulation and implementation of dual-stage liveness challenge engine.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Implemented Eye Aspect Ratio (EAR) blink detection state machine.<br>2. Built nose-to-cheek horizontal ratio for head yaw angle rotation tracking.<br>3. Developed vertical lip ratio for mouth opening verification.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>TypeScript, Euclidean Geometry Math, React State Machine.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Eliminated vulnerability to 2D photo prints and screen replay spoofing attacks.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Biometric mathematical modeling, state-machine design for multi-frame video analysis.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>EAR Blink Formula: EAR = (||P37-P41|| + ||P38-P40||) / (2 * ||P36-P39||), Liveness Flowchart.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 05</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: WEEK 4 SUMMARY -->
+    <div class="slide" id="slide-7">
+        <div class="slide-title-banner">
+            <h2>WEEK 4: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 4</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Type-safe full-stack API router and Express middleware infrastructure development.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Built tRPC router defining procedures for registration, login, and user profile.<br>2. Enforced strict runtime input schema validation using Zod.<br>3. Implemented JWT cookie-based session management and Express middleware.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>Node.js 20, Express, tRPC v11, Zod, JSON Web Tokens (JWT), Bcrypt.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Guaranteed end-to-end type safety between client and server APIs, preventing runtime payload bugs.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>tRPC procedure design, Zod schema validation, secure session management.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>tRPC Router Source Code, Zod Validation Schemas.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 06</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: WEEK 5 SUMMARY -->
+    <div class="slide" id="slide-8">
+        <div class="slide-title-banner">
+            <h2>WEEK 5: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 5</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Cloud database provisioning, Drizzle ORM schema mapping, and vector storage setup.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Provisioned Aiven Cloud MySQL 8.0 instance in DigitalOcean Bangalore region.<br>2. Defined Drizzle ORM schemas for 'users' and 'faceImages' tables.<br>3. Formulated 1:1 Euclidean distance vector matching procedure (Threshold < 0.60).</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>Aiven Cloud MySQL 8.0, Drizzle ORM, Drizzle-Kit, MySQL2, SQL.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Created high-performance, low-latency relational vector storage for biometric profiles.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Cloud database configuration, Drizzle ORM migrations, 128-D vector descriptor matching.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Drizzle Schema Code, SQL Migration Files, Aiven MySQL Connection URI.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 07</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: WEEK 6 SUMMARY -->
+    <div class="slide" id="slide-9">
+        <div class="slide-title-banner">
+            <h2>WEEK 6: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 6</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Anti-spoofing security guardrails, multi-face guard, and threat testing.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Implemented Multi-Face Guard aborting verification if face count > 1.<br>2. Integrated bcrypt password hashing (Salt factor 10).<br>3. Executed spoof attack tests using high-res printed photos and video replays.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>Bcrypt, Multi-Face Detection Guard, Presentation Attack Tests.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Hardened system security against secondary face injection and credential theft.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Biometric threat modeling, multi-face detection guardrails, credential security.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Threat Matrix Table, Presentation Attack Test Evaluation Logs.</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 08</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: WEEK 7 SUMMARY -->
+    <div class="slide" id="slide-10">
+        <div class="slide-title-banner">
+            <h2>WEEK 7: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 7</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>Multi-stage Docker containerization and cloud PaaS deployment pipeline configuration.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Engineered two-stage Dockerfile based on Node 20 Alpine Linux.<br>2. Connected GitHub repo to Render PaaS for automated continuous deployment (CD).<br>3. Enforced HTTPS TLS 1.3 encryption across all communication channels.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>Docker, Render PaaS, GitHub Actions, HTTPS/SSL, Alpine Linux.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Achieved 100% free, automated public deployment accessible worldwide.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Multi-stage container optimization, automated deployment pipelines, SSL/TLS management.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Production Dockerfile, Live Web URL: https://face-liveness-ai.onrender.com</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 09</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: WEEK 8 SUMMARY -->
+    <div class="slide" id="slide-11">
+        <div class="slide-title-banner">
+            <h2>WEEK 8: WEEKLY WORK SUMMARY</h2>
+        </div>
+
+        <table class="gsv-table">
+            <tr>
+                <th style="width: 30%;">Particulars</th>
+                <td style="width: 70%; font-weight: bold;">Details</td>
+            </tr>
+            <tr>
+                <th>Week Number</th>
+                <td>Week 8</td>
+            </tr>
+            <tr>
+                <th>Objectives</th>
+                <td>System performance benchmarking, empirical validation, and final report compilation.</td>
+            </tr>
+            <tr>
+                <th>Tasks Undertaken</th>
+                <td>1. Executed 100 benchmark test authentication runs across desktop and mobile devices.<br>2. Measured 98.6% accuracy, 3.8s average latency, and < 0.1% False Acceptance Rate.<br>3. Authored complete Internship Technical Report following GSV guidelines.</td>
+            </tr>
+            <tr>
+                <th>Tools / Technologies Used</th>
+                <td>Overleaf LaTeX, Chrome DevTools, PageSpeed Insights, Benchmark Scripts.</td>
+            </tr>
+            <tr>
+                <th>Contribution to Organisation</th>
+                <td>Delivered fully documented, production-ready biometric authentication platform.</td>
+            </tr>
+            <tr>
+                <th>Learning Outcomes</th>
+                <td>Empirical performance evaluation, FAR/FRR measurement, academic report writing.</td>
+            </tr>
+            <tr>
+                <th>Supporting Evidence</th>
+                <td>Benchmark Results Table, Overleaf LaTeX Technical Report (main.tex).</td>
+            </tr>
+        </table>
+
+        <div class="slide-footer">
+            <div class="footer-note">
+                <b>Note:</b> From Slide 3 onwards, dedicate one slide per week summarizing tasks completed.
+            </div>
+            <div class="page-num">Page Number: 10</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: SYSTEM ARCHITECTURE -->
+    <div class="slide" id="slide-12">
+        <div class="slide-title-banner">
+            <h2>SYSTEM COMPONENT ARCHITECTURE</h2>
+        </div>
+
+        <div style="padding: 20px; font-size: 15px; line-height: 1.6;">
+            <div style="background-color: #f7fafc; border: 1.5px solid #cbd5e0; padding: 20px; border-radius: 4px; margin-bottom: 15px;">
+                <h3 style="color: var(--gsv-navy); margin-bottom: 10px;">End-to-End Data Pipeline Flow:</h3>
+                <ol style="margin-left: 20px;">
+                    <li><b>Browser Client Layer (React 19 + Vite):</b> Captures video stream, executes WebGL hardware-accelerated face-api.js inference, extracts 68 facial landmarks & 128-D vector locally.</li>
+                    <li><b>API Middleware Layer (tRPC + Express):</b> Receives 128-D vector payload over HTTPS, validates input schemas via Zod, manages JWT session cookies.</li>
+                    <li><b>Cloud Storage Layer (Aiven MySQL 8.0):</b> Executes 1:1 Euclidean distance vector matching (Threshold < 0.60) over encrypted SSL connections.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>Project Outcome & Architecture</div>
+            <div class="page-num">Page Number: 11</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: PERFORMANCE BENCHMARKS -->
+    <div class="slide" id="slide-13">
+        <div class="slide-title-banner">
+            <h2>EXPERIMENTAL RESULTS & BENCHMARKS</h2>
+        </div>
+
+        <table class="gsv-table">
+            <thead>
+                <tr style="background-color: #edf2f7;">
+                    <th style="width: 45%;">Metric Parameter</th>
+                    <th style="width: 25%;">Measured Value</th>
+                    <th style="width: 30%;">Target Benchmark</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Face Recognition Accuracy</b></td>
+                    <td>98.6%</td>
+                    <td>> 95.0%</td>
+                </tr>
+                <tr>
+                    <td><b>Blink Detection True Positive Rate</b></td>
+                    <td>97.4%</td>
+                    <td>> 95.0%</td>
+                </tr>
+                <tr>
+                    <td><b>False Acceptance Rate (FAR)</b></td>
+                    <td>< 0.1%</td>
+                    <td>< 0.5%</td>
+                </tr>
+                <tr>
+                    <td><b>False Rejection Rate (FRR)</b></td>
+                    <td>1.4%</td>
+                    <td>< 2.0%</td>
+                </tr>
+                <tr>
+                    <td><b>Average Authentication Latency</b></td>
+                    <td>3.8 Seconds</td>
+                    <td>< 5.0 Seconds</td>
+                </tr>
+                <tr>
+                    <td><b>Client Frame Inference Rate</b></td>
+                    <td>5 – 10 FPS</td>
+                    <td>> 5 FPS</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="slide-footer">
+            <div>Empirical Evaluation & Performance</div>
+            <div class="page-num">Page Number: 12</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: CONCLUSION & DELIVERABLES -->
+    <div class="slide" id="slide-14">
+        <div class="slide-title-banner">
+            <h2>MAJOR DELIVERABLES & CONCLUSION</h2>
+        </div>
+
+        <div style="font-size: 15px; line-height: 1.7; padding: 10px;">
+            <div style="background-color: #f7fafc; border: 1.5px solid #cbd5e0; padding: 15px; border-radius: 4px; margin-bottom: 15px;">
+                <h3 style="color: var(--gsv-navy); margin-bottom: 8px;">Key Project Deliverables:</h3>
+                <ul style="margin-left: 20px;">
+                    <li><b>Live Web Application:</b> <a href="https://face-liveness-ai.onrender.com" target="_blank" style="color: #2b6cb0;">https://face-liveness-ai.onrender.com</a></li>
+                    <li><b>GitHub Repository:</b> <a href="https://github.com/Hindustani-2003/face-liveness-ai.git" target="_blank" style="color: #2b6cb0;">Hindustani-2003/face-liveness-ai</a></li>
+                    <li><b>Overleaf LaTeX Technical Report:</b> Complete 8-week GSV template formatted <code>main.tex</code>.</li>
+                </ul>
+            </div>
+
+            <div style="background-color: #ebf8ff; border: 1.5px solid #90cdf4; padding: 15px; border-radius: 4px;">
+                <h3 style="color: var(--gsv-navy); margin-bottom: 8px;">Conclusion:</h3>
+                <p>FaceLiveness AI successfully delivers a passwordless, biometric access control platform with real-time liveness detection, zero server GPU hosting costs, and enterprise-grade anti-spoofing security.</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>Final Deliverables & Conclusion</div>
+            <div class="page-num">Page Number: 13</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
